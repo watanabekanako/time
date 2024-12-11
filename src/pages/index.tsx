@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+// プラグインを拡張
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export async function getServerSideProps() {
-  // サーバー側で現在の時間を取得
-  const serverTime = dayjs().toISOString();
+  // サーバー側で現在の時間をJSTに変換
+  const serverTime = dayjs().tz("Asia/Tokyo").toISOString();
 
   return {
     props: { serverTime },
@@ -14,8 +20,8 @@ export default function Home({ serverTime }: { serverTime: string }) {
   const [clientTime, setClientTime] = useState("");
 
   useEffect(() => {
-    // クライアント側の現在の時間を取得
-    setClientTime(dayjs().toISOString());
+    // クライアント側の現在の時間をJSTに変換
+    setClientTime(dayjs().tz("Asia/Tokyo").toISOString());
   }, []);
 
   // 時間差を計算 (ミリ秒単位)
@@ -34,11 +40,12 @@ export default function Home({ serverTime }: { serverTime: string }) {
       <h1>SSR Time Test with Day.js</h1>
       <p>
         <strong>Server Time:</strong>{" "}
-        {dayjs(serverTime).format("YYYY-MM-DD HH:mm:ss")}
+        {dayjs(serverTime).tz("Asia/Tokyo").format("YYYY-MM-DD HH:mm:ss")}
       </p>
       <p>
         <strong>Client Time:</strong>{" "}
-        {clientTime && dayjs(clientTime).format("YYYY-MM-DD HH:mm:ss")}
+        {clientTime &&
+          dayjs(clientTime).tz("Asia/Tokyo").format("YYYY-MM-DD HH:mm:ss")}
       </p>
       <p>
         <strong>Time Difference:</strong>{" "}
