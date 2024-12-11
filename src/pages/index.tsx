@@ -10,7 +10,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ serverTime }: any) {
+export default function Home({ serverTime }: { serverTime: string }) {
   const [clientTime, setClientTime] = useState("");
 
   useEffect(() => {
