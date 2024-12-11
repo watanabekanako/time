@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 
 export async function getServerSideProps() {
   // サーバー側で現在の時間をJSTに変換
