@@ -3,13 +3,9 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
-// プラグインを拡張
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
 export async function getServerSideProps() {
   // サーバー側で現在の時間をJSTに変換
-  const serverTime = dayjs("2020-12-1").format("YYYY-MM-DD");
+  const serverTime = dayjs();
 
   console.log(serverTime);
   return {
@@ -22,7 +18,7 @@ export default function Home({ serverTime }: { serverTime: string }) {
 
   useEffect(() => {
     // クライアント側の現在の時間をJSTに変換
-    setClientTime(dayjs("2020-12-1").format("YYYY-MM-DD"));
+    setClientTime(dayjs().format("YYYY-MM-DD"));
   }, []);
 
   // 時間差を計算 (ミリ秒単位)
@@ -43,7 +39,7 @@ export default function Home({ serverTime }: { serverTime: string }) {
         <strong>Server Time3333:</strong> {serverTime}
       </p>
       <p>
-        <strong>Client Time22222:</strong> {clientTime}
+        <strong>Client Time22222sss:</strong> {clientTime}
       </p>
       <p>
         <strong>Time Difference:</strong>{" "}
