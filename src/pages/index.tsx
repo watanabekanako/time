@@ -9,8 +9,9 @@ dayjs.extend(timezone);
 
 export async function getServerSideProps() {
   // サーバー側で現在の時間をJSTに変換
-  const serverTime = dayjs().tz();
+  const serverTime = dayjs("2020-12-1").format("YYYY-MM-DD");
 
+  console.log(serverTime);
   return {
     props: { serverTime },
   };
@@ -21,7 +22,7 @@ export default function Home({ serverTime }: { serverTime: string }) {
 
   useEffect(() => {
     // クライアント側の現在の時間をJSTに変換
-    setClientTime(dayjs().tz().toISOString());
+    setClientTime(dayjs("2020-12-1").format("YYYY-MM-DD"));
   }, []);
 
   // 時間差を計算 (ミリ秒単位)
@@ -39,12 +40,10 @@ export default function Home({ serverTime }: { serverTime: string }) {
     >
       <h1>SSR Time Test with Day.js</h1>
       <p>
-        <strong>Server Time:</strong>{" "}
-        {dayjs(serverTime).tz().format("YYYY-MM-DD HH:mm:ss")}
+        <strong>Server Time3333:</strong> {serverTime}
       </p>
       <p>
-        <strong>Client Time22222:</strong>{" "}
-        {clientTime && dayjs(clientTime).tz().format("YYYY-MM-DD HH:mm:ss")}
+        <strong>Client Time22222:</strong> {clientTime}
       </p>
       <p>
         <strong>Time Difference:</strong>{" "}
