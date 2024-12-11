@@ -40,12 +40,11 @@ export default function Home({ serverTime }: { serverTime: string }) {
       <h1>SSR Time Test with Day.js</h1>
       <p>
         <strong>Server Time:</strong>{" "}
-        {dayjs(serverTime).tz("Asia/Tokyo").format("YYYY-MM-DD HH:mm:ss")}
+        {dayjs(serverTime).tz().format("YYYY-MM-DD HH:mm:ss")}
       </p>
       <p>
         <strong>Client Time:</strong>{" "}
-        {clientTime &&
-          dayjs(clientTime).tz("Asia/Tokyo").format("YYYY-MM-DD HH:mm:ss")}
+        {clientTime && dayjs(clientTime).tz().format("YYYY-MM-DD HH:mm:ss")}
       </p>
       <p>
         <strong>Time Difference:</strong>{" "}
