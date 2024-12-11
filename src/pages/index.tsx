@@ -9,7 +9,7 @@ dayjs.extend(timezone);
 
 export async function getServerSideProps() {
   // サーバー側で現在の時間をJSTに変換
-  const serverTime = dayjs().tz("Asia/Tokyo").toISOString();
+  const serverTime = dayjs().tz();
 
   return {
     props: { serverTime },
@@ -21,7 +21,7 @@ export default function Home({ serverTime }: { serverTime: string }) {
 
   useEffect(() => {
     // クライアント側の現在の時間をJSTに変換
-    setClientTime(dayjs().tz("Asia/Tokyo").toISOString());
+    setClientTime(dayjs().tz().toISOString());
   }, []);
 
   // 時間差を計算 (ミリ秒単位)
