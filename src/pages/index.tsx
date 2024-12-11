@@ -43,7 +43,7 @@ export default function Home({ serverTime }: { serverTime: string }) {
         {dayjs(serverTime).tz().format("YYYY-MM-DD HH:mm:ss")}
       </p>
       <p>
-        <strong>Client Time:</strong>{" "}
+        <strong>Client Time22222:</strong>{" "}
         {clientTime && dayjs(clientTime).tz().format("YYYY-MM-DD HH:mm:ss")}
       </p>
       <p>
